@@ -12,14 +12,14 @@ name: Docker / shell lint
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - Dockerfile
       - docker/**
       - .hadolint.yaml
       - .github/workflows/docker-lint.yml
   pull_request:
-    branches: [main]
+    branches: [master]
     paths:
       - Dockerfile
       - docker/**
