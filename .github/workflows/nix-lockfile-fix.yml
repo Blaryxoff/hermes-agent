@@ -24,6 +24,7 @@ permissions:
 concurrency:
   group: nix-lockfile-fix-${{ github.event.issue.number || github.event.inputs.pr_number || github.ref }}
   cancel-in-progress: false
+  queue: single
 
 jobs:
   # ── Auto-fix on main ───────────────────────────────────────────────
@@ -36,10 +37,7 @@ jobs:
   #      the paths filter above, so this cannot re-trigger itself.
   #   2. An explicit file-whitelist check before commit aborts if
   #      fix-lockfiles ever modifies unexpected files.
-  #   3. Job-level concurrency with cancel-in-progress: true ensures
-  #      back-to-back pushes collapse to the newest; ref: main checkout
-  #      always operates on the latest branch state.
-  #   4. Uses a GitHub App token (not GITHUB_TOKEN) so the fix commit
+  #   3. Uses a GitHub App token (not GITHUB_TOKEN) so the fix commit
   #      triggers downstream nix.yml verification.
   auto-fix-main:
     if: github.event_name == 'push'
@@ -47,7 +45,8 @@ jobs:
     timeout-minutes: 25
     concurrency:
       group: auto-fix-main
-      cancel-in-progress: true
+      cancel-in-progress: false
+      queue: single
     steps:
       - name: Generate GitHub App token
         id: app-token

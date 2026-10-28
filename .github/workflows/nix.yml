@@ -11,7 +11,8 @@ permissions:
 
 concurrency:
   group: nix-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
+  queue: single
 
 jobs:
   nix:

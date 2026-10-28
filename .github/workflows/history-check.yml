@@ -20,6 +20,11 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: workflow-history-check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+  queue: single
+
 jobs:
   check-common-ancestor:
     runs-on: ubuntu-latest

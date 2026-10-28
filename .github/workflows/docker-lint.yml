@@ -31,7 +31,8 @@ permissions:
 
 concurrency:
   group: docker-lint-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
+  queue: single
 
 jobs:
   hadolint:

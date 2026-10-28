@@ -26,6 +26,11 @@ permissions:
 # yourself adding WARNING-tier patterns here again, make a separate
 # advisory-only workflow instead.
 
+concurrency:
+  group: workflow-supply-chain-audit-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+  queue: single
+
 jobs:
   scan:
     name: Scan PR for critical supply chain risks

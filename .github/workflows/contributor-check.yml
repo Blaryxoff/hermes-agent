@@ -12,6 +12,11 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: workflow-contributor-check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+  queue: single
+
 jobs:
   check-attribution:
     runs-on: ubuntu-latest

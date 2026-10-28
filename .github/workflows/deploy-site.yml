@@ -19,6 +19,7 @@ permissions:
 concurrency:
   group: pages
   cancel-in-progress: false
+  queue: single
 
 jobs:
   deploy-vercel:

@@ -16,6 +16,11 @@ permissions:
   contents: read
   issues: write
 
+concurrency:
+  group: workflow-skills-index-freshness-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+  queue: single
+
 jobs:
   check-freshness:
     if: github.repository == 'NousResearch/hermes-agent'

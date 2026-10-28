@@ -18,7 +18,8 @@ permissions:
 # Cancel in-progress runs for the same PR/branch
 concurrency:
   group: tests-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
+  queue: single
 
 jobs:
   test:

@@ -21,6 +21,7 @@ permissions:
 concurrency:
   group: pypi-publish
   cancel-in-progress: false
+  queue: single
 
 jobs:
   build:

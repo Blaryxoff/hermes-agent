@@ -10,6 +10,11 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: workflow-docs-site-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+  queue: single
+
 jobs:
   docs-site-checks:
     runs-on: ubuntu-latest
